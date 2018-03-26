@@ -1,0 +1,167 @@
+def ispossible(num,row,col,board):
+ # print("num is ", num, " row is ", row, " col is ", col)
+  for i in range(0,9):
+    
+    if board[row][i] == num:
+      
+      return False
+      
+    for p in range (0,9): # change back to 9
+      
+      if board[p][col] == num:
+        
+        return False
+    
+    if col == 0 or col == 1 or col == 2: #first box
+      
+      if row == 0 or row == 1 or row ==2:
+        
+        for t in range(0,3):
+          
+          for g in range(0,3):
+            
+            if board[t][g] == num:
+              
+              return False
+      
+      elif row == 3 or row == 4 or row == 5:
+        
+        for t in range(3,6):
+          
+          for g in range(0,3):
+            
+            if board[t][g] == num:
+              
+              return False
+      
+      elif row == 6 or row == 7 or row == 8:
+        
+        for t in range(6,9):
+          
+          for g in range(0,3):
+            
+            if board[t][g] == num:
+              
+              return False
+    
+    elif col == 3 or col == 4 or col == 5:  #second box
+      
+      if row == 0 or row == 1 or row ==2:
+        
+        for t in range(0,3):
+          
+          for g in range(3,6):
+            
+            if board[t][g] == num:
+              
+              return False
+      
+      elif row == 3 or row == 4 or row == 5:
+        
+        for t in range(3,6):
+          
+          for g in range(3,6):
+            
+            if board[t][g] == num:
+              
+              return False
+      
+      elif row == 6 or row == 7 or row == 8:
+        
+        for t in range(6,9):
+          
+          for g in range(3,6):
+            
+            if board[t][g] == num:
+              
+              return False
+              
+    elif col == 6 or col == 7 or col == 8:  #third box
+      
+      if row == 0 or row == 1 or row ==2:
+        
+        for t in range(0,3):
+          
+          for g in range(6,9):
+            
+            if board[t][g] == num:
+              
+              return False
+      
+      elif row == 3 or row == 4 or row == 5:
+        
+        for t in range(3,6):
+          
+          for g in range(6,9):
+            
+            if board[t][g] == num:
+              
+              return False
+      
+      elif row == 6 or row == 7 or row == 8:
+        
+        for t in range(6,9):
+          
+          for g in range(6,9):
+            
+            if board[t][g] == num:
+              
+              return False    
+  
+  #print("returning ", num , " for ",row,col)
+  return True
+  
+def docol(row,col,board):
+  
+  for col in range(col,9):
+        
+    if board[row][col] == ' ':
+          
+      for num in range(1,10):
+           
+        if ispossible(num,row,col,board):
+            
+          board[row][col] = num
+          print(row,col,"is",num)
+            
+          if col < 9:
+  
+            docol(row,col+1,board)
+              
+       
+            
+  
+def sudokusolver(board,roww,column,lvl):
+  
+
+  if not any (' ' in subl for subl in board):
+   
+    #print("printing board",board)
+    return True
+      
+      
+  else:
+   
+    for row in range(roww,len(board)):
+      
+      docol(row,0,board)
+      
+            
+          
+
+  return board
+  
+board = [[5,3,' ',' ',7,' ',' ',' ',' '],
+          [6,' ',' ',1,9,5,' ',' ',' '],
+          [' ',9,8,' ',' ',' ',' ',6,' '],
+          [8,' ',' ',' ',6,' ',' ',' ',3],
+          [4,' ',' ',8,' ',3,' ',' ',1],
+          [7,' ',' ',' ',2,' ',' ',' ',6],
+          [' ',6,' ',' ',' ',' ',2,8,' '],
+          [' ',' ',' ',4,1,9,' ',' ',5],
+          [' ',' ',' ',' ',8,' ',' ',7,9]]
+          
+          
+boa = sudokusolver(board,0,0,0)
+
+print(boa)

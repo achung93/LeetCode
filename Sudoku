@@ -110,26 +110,42 @@ def ispossible(num,row,col,board):
   
   #print("returning ", num , " for ",row,col)
   return True
+
+'''def donum(row,col,board):
   
-def docol(row,col,board):
+  for num in range(1,10):
+    print("trying",row,col,num)
+    if ispossible(num,row,col,board):
+            
+      board[row][col] = num
+      print(row,col,"is",num)
+            
+      if col < 9:
   
-  for col in range(col,9):
-        
+        donum(row,col+1,board)'''
+  
+
+def docol(row,col,board,lvl):
+
     if board[row][col] == ' ':
           
-      for num in range(1,10):
-           
+      for num in range (1,10):
+        print("trying...",row,col,num,"lvl is",lvl)
         if ispossible(num,row,col,board):
-            
+          
           board[row][col] = num
-          print(row,col,"is",num)
-            
-          if col < 9:
-  
-            docol(row,col+1,board)
+          #print(board)
+          if col < 8:
+            docol(row,col+1,board,lvl+1)
               
-       
-            
+      print("no match returning in row col",row,col)
+      board[row][col] = ' '
+      print(board)
+    
+    else:
+      
+      if col < 8:
+        docol(row,col+1,board,lvl)
   
 def sudokusolver(board,roww,column,lvl):
   
@@ -144,7 +160,7 @@ def sudokusolver(board,roww,column,lvl):
    
     for row in range(roww,len(board)):
       
-      docol(row,0,board)
+      docol(row,0,board,0)
       
             
           

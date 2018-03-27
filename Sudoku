@@ -6,107 +6,107 @@ def ispossible(num,row,col,board):
       
       return False
       
-    for p in range (0,9): # change back to 9
+  for p in range (0,9): # change back to 9
       
-      if board[p][col] == num:
+    if board[p][col] == num:
         
-        return False
+      return False
     
-    if col == 0 or col == 1 or col == 2: #first box
+  if col == 0 or col == 1 or col == 2: #first box
       
-      if row == 0 or row == 1 or row ==2:
+    if row == 0 or row == 1 or row ==2:
         
-        for t in range(0,3):
+      for t in range(0,3):
           
-          for g in range(0,3):
+        for g in range(0,3):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
       
-      elif row == 3 or row == 4 or row == 5:
+    elif row == 3 or row == 4 or row == 5:
         
-        for t in range(3,6):
+      for t in range(3,6):
           
-          for g in range(0,3):
+        for g in range(0,3):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
       
-      elif row == 6 or row == 7 or row == 8:
+    elif row == 6 or row == 7 or row == 8:
         
-        for t in range(6,9):
+      for t in range(6,9):
           
-          for g in range(0,3):
+        for g in range(0,3):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
     
-    elif col == 3 or col == 4 or col == 5:  #second box
+  elif col == 3 or col == 4 or col == 5:  #second box
       
-      if row == 0 or row == 1 or row ==2:
+    if row == 0 or row == 1 or row ==2:
         
-        for t in range(0,3):
+      for t in range(0,3):
           
-          for g in range(3,6):
+        for g in range(3,6):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
       
-      elif row == 3 or row == 4 or row == 5:
+    elif row == 3 or row == 4 or row == 5:
         
-        for t in range(3,6):
+      for t in range(3,6):
           
-          for g in range(3,6):
+        for g in range(3,6):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
       
-      elif row == 6 or row == 7 or row == 8:
+    elif row == 6 or row == 7 or row == 8:
         
-        for t in range(6,9):
+      for t in range(6,9):
           
-          for g in range(3,6):
+        for g in range(3,6):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
               
-    elif col == 6 or col == 7 or col == 8:  #third box
+  elif col == 6 or col == 7 or col == 8:  #third box
       
-      if row == 0 or row == 1 or row ==2:
+    if row == 0 or row == 1 or row ==2:
         
-        for t in range(0,3):
+      for t in range(0,3):
           
-          for g in range(6,9):
+        for g in range(6,9):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
       
-      elif row == 3 or row == 4 or row == 5:
+    elif row == 3 or row == 4 or row == 5:
         
-        for t in range(3,6):
+      for t in range(3,6):
           
-          for g in range(6,9):
+        for g in range(6,9):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False
+            return False
       
-      elif row == 6 or row == 7 or row == 8:
+    elif row == 6 or row == 7 or row == 8:
         
-        for t in range(6,9):
+      for t in range(6,9):
           
-          for g in range(6,9):
+        for g in range(6,9):
             
-            if board[t][g] == num:
+          if board[t][g] == num:
               
-              return False    
+            return False    
   
   #print("returning ", num , " for ",row,col)
   return True
@@ -134,10 +134,14 @@ def docol(row,col,board,lvl):
         if ispossible(num,row,col,board):
           
           board[row][col] = num
-          #print(board)
+          print(board)
           if col < 8:
             docol(row,col+1,board,lvl+1)
-              
+          
+          if not ' ' in board[row]:
+            
+            docol(row+1,0,board,lvl+1)
+            
       print("no match returning in row col",row,col)
       board[row][col] = ' '
       print(board)
@@ -146,6 +150,10 @@ def docol(row,col,board,lvl):
       
       if col < 8:
         docol(row,col+1,board,lvl)
+        
+      elif:
+        
+        docol(row+1,0,board,lvl)
   
 def sudokusolver(board,roww,column,lvl):
   

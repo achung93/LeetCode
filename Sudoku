@@ -133,6 +133,7 @@ def docol(row,col,board,lvl):
       return board
     
     else:
+      
       if board[row][col] == ' ':
           
         for num in range (1,10):
@@ -142,15 +143,16 @@ def docol(row,col,board,lvl):
             board[row][col] = num
           #print(board)
             if col < 8:
+              
               docol(row,col+1,board,lvl+1)
           
             if not ' ' in board[row]:
             
               docol(row+1,0,board,lvl+1)
             
-      #print("no match returning in row col",row,col)
+     
         board[row][col] = ' '
-        #print(board)
+        
     
       else:
       

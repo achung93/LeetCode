@@ -1,3 +1,8 @@
+globnum = 1
+
+brd = []
+
+
 def ispossible(num,row,col,board):
  # print("num is ", num, " row is ", row, " col is ", col)
   for i in range(0,9):
@@ -126,11 +131,18 @@ def ispossible(num,row,col,board):
   
 
 def docol(row,col,board,lvl):
-    
+  
+    global globnum
+    global brd
+  
     if row == 9:
       
-      print("board is",board)
-      return board
+      if globnum == 1:
+        
+        print(board)
+        brd = board
+        print("brd is",brd)
+        globnum+=1
     
     else:
       
@@ -173,10 +185,8 @@ def sudokusolver(board,roww,column,lvl):
       
   docol(roww,0,board,0)
       
-            
-          
 
-  return board
+  #return board
   
 board = [[5,3,' ',' ',7,' ',' ',' ',' '],
           [6,' ',' ',1,9,5,' ',' ',' '],
@@ -189,4 +199,5 @@ board = [[5,3,' ',' ',7,' ',' ',' ',' '],
           [' ',' ',' ',' ',8,' ',' ',7,9]]
           
           
-boa = sudokusolver(board,0,0,0)
+sudokusolver(board,0,0,0)
+print("brd is",brd)
